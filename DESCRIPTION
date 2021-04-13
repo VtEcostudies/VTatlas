@@ -12,3 +12,7 @@ RoxygenNote: 7.1.1
 Import: httr
 Depends: 
     R (>= 2.10)
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

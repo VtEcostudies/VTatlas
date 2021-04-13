@@ -9,7 +9,8 @@ queryAPI(
   type = "occurrences",
   fields = "all",
   quiet = FALSE,
-  pageSize = NULL
+  pageSize = NULL,
+  spatialWKT = NULL
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ queryAPI(
 \item{quiet}{defaults to \code{FALSE}, if \code{TRUE} prints brief description to console}
 
 \item{pageSize}{defaults to NULL which returns all records}
+
+\item{spatialWKT}{well-known text for a \code{POLYGON} or \code{MULTIPOLYGON}, defaults to null}
 }
 \value{
 \code{data frame} of results from query

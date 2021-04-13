@@ -1,0 +1,83 @@
+---
+title: "queryAPI"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{queryAPI}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+<img src=https://www.inaturalist.org/attachments/project_assets/827-VCE_atlas_top-sunrisemtns-990x400.jpg?1551451641>
+
+Download the package and load the library
+
+```{r, eval = FALSE}
+# this only needs to be run if:
+# 1) downloading for the first time 
+# 2) updating to get new functions
+
+devtools::install_github("VtEcostudies/VTatlas", ref = "main")
+```
+
+```{r setup}
+library(VTatlas)
+```
+
+# Using the <code>queryAPI</code> function
+
+The <code>queryAPI</code> function grabs occurrence records using the Vermont Atlas of Life's API. 
+See VAL's API guide <a href=https://biocache-ws.vtatlasoflife.org/oldapi blank = true>here</a>
+
+## Simple query 
+
+Below is a simple query where we return all the records that have 'Odonata' in the order field.
+by default the function returns all the records. One could limit the amount of 
+records that are returned by setting the <code>pageSize</code> argument. If a 
+<code>pageSize</code> set by the user is larger than the number of observations
+the data frame returned will be filled with NAs.
+
+```{r}
+Odonata <- queryAPI(query = list('order:Odonata'))
+
+head(Odonata[,1:5])
+```
+
+Manually set pageSize.
+```{r}
+Odonata_1000 <- queryAPI(query = list('order:Odonata', pageSize = 1000))
+
+tail(Odonata_1000[,1:5])
+```
+
+Spatial query
+```{r}
+towns <- sf::st_read("../../VermontAtlasofLife/VAL_GoogleDrive/Spatial_Layers/VAL Spatial Layers/VTtownsWGS84.shp")
+
+wkt_text <- sf::st_as_text(sf::st_geometry(towns[towns$TOWNNAME=="BENNINGTON",]))
+```
+
+```{r}
+Od_BEN <- queryAPI(query = list('order:Odonata'),
+                   spatialWKT = wkt_text)
+```
+
+```{r, echo = FALSE, fig.width = 5, fig.height = 8}
+par(mar = c(0,0,0,0))
+plot(sf::st_geometry(towns), border = "gray")
+plot(sf::st_geometry(towns[towns$TOWNNAME=="BENNINGTON",]),
+     add = TRUE, col = "gray")
+points(Od_BEN$decimalLatitude~Od_BEN$decimalLongitude,
+       pch = 20, col = "red")
+points(Odonata$decimalLatitude~Odonata$decimalLongitude, pch = ".")
+legend('bottomright', 
+       legend = c("Odonata observations", "Bennington observations"),
+       pch = c(20,20),
+       col = c('black','red'), 
+       bty = "n")
+```
