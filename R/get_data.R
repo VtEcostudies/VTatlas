@@ -4,7 +4,8 @@
 #' Life's API
 #'
 #' @param query \code{list} of query terms \code{list('order:Odonata','etc')}
-#' @param type default = occurrences
+#' @param type options include "TotalObs" and 'occurrences'. TotalObs returns only the number of observations. No data.
+#' occurrence returns data associated with occurrence records. default = occurrences.
 #' @param fields defaults to 'all'
 #' @param quiet defaults to \code{FALSE}, if \code{TRUE} prints brief description to console
 #' @param pageSize defaults to NULL which returns all records
@@ -43,11 +44,17 @@ queryAPI <- function(query,
   # if pageSize is null get the total number of records
   ps <- ifelse(is.null(pageSize),intialQuery$totalRecords, pageSize)
 
-  if(!quiet){cat(intialQuery$totalRecords,'records found. Gathering',ps,'records now\n')}
+  if(!quiet){cat(intialQuery$totalRecords,'records found. Gathering',ps,'records now\n',
+                 'url:',queryURL,' \n')}
 
   queryURL <- paste0(queryURL,"&pageSize=", ps)
 
   datalist <- suppressWarnings(jsonlite::fromJSON(readLines(queryURL), flatten = TRUE))
 
+  if(type == "occurrences"){
   return(datalist$occurrences)
+  }
+  if(type == "TotalObs"){
+  return(datalist$totalRecords)
+  }
 }
