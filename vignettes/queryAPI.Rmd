@@ -57,7 +57,7 @@ tail(Odonata_1000[,1:5])
 
 Spatial query
 ```{r}
-towns <- sf::st_read("../../VermontAtlasofLife/VAL_GoogleDrive/Spatial_Layers/VAL Spatial Layers/VTtownsWGS84.shp")
+towns <- sf::st_read("../data-raw/VTtownsWGS84.shp")
 
 wkt_text <- sf::st_as_text(sf::st_geometry(towns[towns$TOWNNAME=="BENNINGTON",]))
 ```
