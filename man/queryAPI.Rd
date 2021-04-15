@@ -19,7 +19,7 @@ queryAPI(
 \item{type}{options include "TotalObs" and 'occurrences'. TotalObs returns only the number of observations. No data.
 occurrence returns data associated with occurrence records. default = occurrences.}
 
-\item{fields}{defaults to 'all'}
+\item{fields}{defaults to 'all'. see \code{dataFields} for returnable fields}
 
 \item{quiet}{defaults to \code{FALSE}, if \code{TRUE} prints brief description to console}
 
