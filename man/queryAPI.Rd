@@ -16,7 +16,8 @@ queryAPI(
 \arguments{
 \item{query}{\code{list} of query terms \code{list('order:Odonata','etc')}}
 
-\item{type}{default = occurrences}
+\item{type}{options include "TotalObs" and 'occurrences'. TotalObs returns only the number of observations. No data.
+occurrence returns data associated with occurrence records. default = occurrences.}
 
 \item{fields}{defaults to 'all'}
 
