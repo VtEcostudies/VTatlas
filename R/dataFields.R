@@ -3,11 +3,11 @@
 #' A dataset containing the field names and attributes of the
 #' solr database as of April 2021.
 #'
-#' @returns  A data frame with 237 rows and 14 variables:
+#' @return  A data frame with 237 rows and 14 variables:
 #' \describe{
 #'   \item{name}{Variable name}
 #'   \item{dataType}{How are data stored}
-#'   \item{indexed}{is the data indexed in the db
+#'   \item{indexed}{is the data indexed in the db}
 #'   \item{stored}{are the data stored or computed}
 #'   \item{multivalue}{does the field return a multivalue field}
 #'   \item{docvalue}{??}

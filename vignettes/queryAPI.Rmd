@@ -49,6 +49,7 @@ head(Odonata[,1:5])
 ```
 
 Manually set pageSize.
+
 ```{r}
 Odonata_1000 <- queryAPI(query = list('order:Odonata', pageSize = 1000))
 
@@ -56,8 +57,9 @@ tail(Odonata_1000[,1:5])
 ```
 
 Spatial query
+
 ```{r}
-towns <- sf::st_read("../data-raw/VTtownsWGS84.shp")
+data(towns)# <- sf::st_read("data-raw/VTtownsWGS84.shp")
 
 wkt_text <- sf::st_as_text(sf::st_geometry(towns[towns$TOWNNAME=="BENNINGTON",]))
 ```

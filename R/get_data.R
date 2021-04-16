@@ -12,7 +12,7 @@
 #' @param spatialWKT well-known text for a \code{POLYGON} or \code{MULTIPOLYGON}, defaults to null
 #' @return \code{data frame} of results from query
 #' @seealso \code{dataFields} for description of fields and which fields can be queried
-#' @example
+#' @examples
 #' \dontrun{queryAPI(query = list("order:Odonata"),
 #'                   type = 'occurrences',
 #'                   fields = c('taxon_name','longitude','latitude','year'))}

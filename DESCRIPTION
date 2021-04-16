@@ -16,3 +16,6 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+Imports: 
+    sf,
+    jsonlite

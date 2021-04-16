@@ -34,6 +34,11 @@ occurrence returns data associated with occurrence records. default = occurrence
 \code{get_data} is a wrapper for httr::GET that connects to Vermont Atlas of
 Life's API
 }
+\examples{
+\dontrun{queryAPI(query = list("order:Odonata"),
+                  type = 'occurrences',
+                  fields = c('taxon_name','longitude','latitude','year'))}
+}
 \seealso{
 \code{dataFields} for description of fields and which fields can be queried
 }
