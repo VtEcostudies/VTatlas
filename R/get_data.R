@@ -46,7 +46,7 @@ queryAPI <- function(query,
   # quick query to get the pageSize and report inital stats
   intialQuery <- suppressWarnings(jsonlite::fromJSON(readLines(queryURL)))
 
-  if(!fields=="all"){
+  if(!("all" %in% fields)){
   queryURL <- paste0(queryURL,"&fl=",paste0(fields,collapse=","))
   }
   # if pageSize is null get the total number of records
